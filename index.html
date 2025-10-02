@@ -26,18 +26,18 @@
       const intent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(glb)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(location.href)};end;`;
       location.href = intent;
     } else {
-      // PC → mostramos el visor 3D con <model-viewer>
-      document.body.innerHTML = `
-        <model-viewer src="${glb}" 
-                      alt="Robot 3D"
-                      auto-rotate
-                      camera-controls
-                      ar
-                      ar-modes="scene-viewer quick-look webxr"
-                      exposure="1"
-                      shadow-intensity="1">
-        </model-viewer>`;
-    }
+  // PC → mostramos visor 3D en esta misma página
+  document.body.innerHTML = `
+    <model-viewer src="${glb}" 
+                  alt="Robot 3D"
+                  auto-rotate 
+                  camera-controls 
+                  ar 
+                  ar-modes="scene-viewer quick-look webxr"
+                  style="width:100%;height:100%;">
+    </model-viewer>`;
+}
+
   </script>
 </body>
 </html>
