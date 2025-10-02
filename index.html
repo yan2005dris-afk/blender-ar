@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Robot AR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google model-viewer (última) -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer@3/dist/model-viewer.min.js"></script>
+  <style>
+    html,body{height:100%;margin:0;font-family:sans-serif;background:#111;color:#fff}
+    model-viewer{width:100%;height:90%;background:#222;border-radius:8px;}
+    h1{text-align:center;margin:.5em 0;font-size:1.2em}
+  </style>
+</head>
+<body>
+  <h1>Toca el botón AR para colocar al robot en tu espacio</h1>
+
+  <!-- Escena 3D + botón nativo AR -->
+  <model-viewer src="https://cdn.jsdelivr.net/gh/TU-USUARIO/blender-ar/robot.glb"
+                ios-src="https://cdn.jsdelivr.net/gh/TU-USUARIO/blender-ar/robot.usdz"
+                ar ar-modes="webxr scene-viewer quick-look"
+                camera-controls auto-rotate
+                alt="Robot animado en RA">
+  </model-viewer>
+</body>
+</html>
