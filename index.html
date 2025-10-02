@@ -4,32 +4,28 @@
   <meta charset="utf-8">
   <title>Robot AR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Google model-viewer (última) -->
-  <script type="module" src="https://unpkg.com/@google/model-viewer@3/dist/model-viewer.min.js"></script>
-  <style>
-    html,body{height:100%;margin:0;font-family:sans-serif;background:#111;color:#fff}
-    model-viewer{width:100%;height:90%;background:#222;border-radius:8px;}
-    h1{text-align:center;margin:.5em 0;font-size:1.2em}
-  </style>
-</head>
-<body>
-  <h1>Toca el botón AR para colocar al robot en tu espacio</h1>
+  <style>body{margin:0;background:#000}</style>
 
-  <!-- Escena 3D + botón nativo AR -->
-  <model-viewer
-  id="mv"
-  src="https://yan2005dris-afk.github.io/blender-ar/robot.glb"
-  ios-src="https://yan2005dris-afk.github.io/blender-ar/robot.usdz"
-  ar
-  ar-modes="webxr scene-viewer quick-look"
-  camera-controls
-  auto-rotate
-  alt="Robot AR">
-  <!-- Botón personalizado -->
-  <button slot="ar-button" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);padding:12px 24px;background:#0af;color:#fff;border:none;border-radius:8px;font-size:18px;">
-    Ver en tu espacio
-  </button>
-</model-viewer>
-  
-</body>
+  <!-- Detecta SO y redirige al visor nativo -->
+  <script>
+    const glb  = 'https://yan2005dris-afk.github.io/blender-ar/robot.glb';
+    const usdz = 'https://yan2005dris-afk.github.io/blender-ar/robot.usdz';
+
+    const isIOS     = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+
+    if (isIOS) {
+      // Quick Look (iOS 13+)
+      location.href = usdz + '#allowsContentScaling=0';
+    } else if (isAndroid) {
+      // Scene-Viewer (Chrome/Edge 86+)
+      const intent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(glb)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(location.href)};end;`;
+      location.href = intent;
+    } else {
+      // Escritorio → mostramos simple vista 3D
+      location.href = 'index.html';
+    }
+  </script>
+</head>
+<body></body>
 </html>
