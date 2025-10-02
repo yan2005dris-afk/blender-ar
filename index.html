@@ -16,11 +16,20 @@
   <h1>Toca el botón AR para colocar al robot en tu espacio</h1>
 
   <!-- Escena 3D + botón nativo AR -->
-  <model-viewer src="https://cdn.jsdelivr.net/gh/TU-USUARIO/blender-ar/robot.glb"
-                ios-src="https://cdn.jsdelivr.net/gh/TU-USUARIO/blender-ar/robot.usdz"
-                ar ar-modes="webxr scene-viewer quick-look"
-                camera-controls auto-rotate
-                alt="Robot animado en RA">
-  </model-viewer>
+  <model-viewer
+  id="mv"
+  src="https://yan2005dris-afk.github.io/blender-ar/robot.glb"
+  ios-src="https://yan2005dris-afk.github.io/blender-ar/robot.usdz"
+  ar
+  ar-modes="webxr scene-viewer quick-look"
+  camera-controls
+  auto-rotate
+  alt="Robot AR">
+  <!-- Botón personalizado -->
+  <button slot="ar-button" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);padding:12px 24px;background:#0af;color:#fff;border:none;border-radius:8px;font-size:18px;">
+    Ver en tu espacio
+  </button>
+</model-viewer>
+  
 </body>
 </html>
